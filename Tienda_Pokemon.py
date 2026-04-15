@@ -60,47 +60,73 @@
 # •	El archivo principal del programa (.py)
 # 5.	Enviar la URL del repositorio a través de AVA.
 
-
+contador_cantidad = 0
+contador_valor = 0
+contador_revivir = 0
+dscto_producto = 0
+dscto_valor = 0
+dscto_revivir = 0 
+total_revivir = 0
+suma_dsctos_revivir = 0
+hizo_compra = True
+flag = True
 print("Bienvenido a la tienda PokéMarket")
-try:
-    contador_prod = 0
-    contador_valor = 0
-    contador_revivir = 0
-    while True:
+while flag:
+    try:
         productos = int(input("Menú de productos \n 1. Pokébola $1000 \n 2. Poción $1500 \n 3. Revivir $3000 \n 4. Banja $500 \n 5. Finalizar compra \n"))
+        if productos < 1 or productos > 5:
+            flag = False
         if productos == 1:
             valor_producto = 1000
-            contador_valor = contador_valor + valor_producto
-            contador_prod =  contador_prod + 1
+            cantidad = int(input("¿Cuantas unidades va a comprar?\n"))
+            contador_valor = contador_valor + (valor_producto * cantidad)
+            contador_cantidad = contador_cantidad + cantidad
         elif productos == 2:
             valor_producto = 1500
-            contador_prod = contador_prod + 1
-            contador_valor = contador_valor + valor_producto
+            cantidad = int(input("¿Cuantas unidades va a comprar?\n"))
+            contador_valor = contador_valor + (valor_producto * cantidad)
+            contador_cantidad = contador_cantidad + cantidad
         elif productos == 3:
             valor_producto = 3000
-            contador_prod = contador_prod + 1
-            contador_valor = contador_valor + valor_producto
-            contador_revivir = contador_revivir + 1
+            cantidad = int(input("¿Cuantas unidades va a comprar?\n"))
+            contador_valor = contador_valor + (valor_producto * cantidad)
+            contador_cantidad = contador_cantidad + cantidad
+            contador_revivir = contador_revivir + cantidad
         elif productos == 4:
             valor_producto = 500
-            contador_prod = contador_prod + 1
-            contador_valor = contador_valor + valor_producto
+            cantidad = int(input("¿Cuantas unidades va a comprar?\n"))
+            contador_valor = contador_valor + (valor_producto * cantidad)
+            contador_cantidad = contador_cantidad + cantidad
         elif productos == 5:
-            break
+            flag = False
         else:
             print("Coloque un valor entre 1 y 5")
-    print(f"La cantidad de productos seleccionados es de {contador_prod}\nEl valor total de la compra es de {contador_valor}")
-    if contador_valor > 5000:
-        dscto_valor = .10
-    elif contador_prod > 10:
-        dscto_producto = .05
-    elif contador_revivir >= 3:
-        dscto_revivir = 0.15
-    else:
-        dscto_valor = 0
-    
-    suma_dsctos = dscto_valor + dscto_producto + dscto_revivir
-    subtotal = contador_valor - suma_dsctos
-    print(f"El subtotal es {subtotal}")
-except:
-    print("Valor debe ser númerico")
+        continuar = int(input("desea seguir comprando? 1.Si   2.No\n"))
+        if continuar == 2:
+            flag = False
+    except:
+        print("Valor debe ser entre 1 y 5")
+
+if contador_revivir >= 3:
+    total_gastado_revivir = contador_revivir * 3000
+    suma_dsctos_revivir = total_gastado_revivir * .15
+
+if contador_valor > 5000:
+    dscto_valor = .10
+if contador_cantidad > 10:
+    dscto_producto = .05
+
+suma_dsctos = (contador_valor * dscto_valor) + (contador_valor * dscto_producto)
+total_dsctos = suma_dsctos + suma_dsctos_revivir
+subtotal = contador_valor - total_dsctos
+
+if contador_cantidad == 0:
+    hizo_compra = False
+
+if hizo_compra == False:
+    print("No realizo ninguna compra")
+else:
+
+    print(f"La cantidad de productos seleccionados es de {contador_cantidad}\nEl valor Neto de la compra es de {contador_valor}")
+    print(f"Subtotal: ${subtotal}")
+    print(f"Total en descuentos: ${total_dsctos}")
