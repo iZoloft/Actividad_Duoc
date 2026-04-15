@@ -126,7 +126,6 @@ if contador_cantidad == 0:
 if hizo_compra == False:
     print("No realizo ninguna compra")
 else:
-
     print(f"La cantidad de productos seleccionados es de {contador_cantidad}\nEl valor Neto de la compra es de {contador_valor}")
     print(f"Subtotal: ${subtotal}")
     print(f"Total en descuentos: ${total_dsctos}")
