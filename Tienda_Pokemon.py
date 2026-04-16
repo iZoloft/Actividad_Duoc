@@ -79,23 +79,23 @@ while flag:
         if productos == 1:
             valor_producto = 1000
             cantidad = int(input("¿Cuantas unidades va a comprar?\n"))
-            contador_valor = contador_valor + (valor_producto * cantidad)
+            contador_valor = valor_producto * cantidad + contador_valor
             contador_cantidad = contador_cantidad + cantidad
         elif productos == 2:
             valor_producto = 1500
             cantidad = int(input("¿Cuantas unidades va a comprar?\n"))
-            contador_valor = contador_valor + (valor_producto * cantidad)
+            contador_valor = valor_producto * cantidad + contador_valor
             contador_cantidad = contador_cantidad + cantidad
         elif productos == 3:
             valor_producto = 3000
             cantidad = int(input("¿Cuantas unidades va a comprar?\n"))
-            contador_valor = contador_valor + (valor_producto * cantidad)
+            contador_valor = valor_producto * cantidad + contador_valor
             contador_cantidad = contador_cantidad + cantidad
             contador_revivir = contador_revivir + cantidad
         elif productos == 4:
             valor_producto = 500
             cantidad = int(input("¿Cuantas unidades va a comprar?\n"))
-            contador_valor = contador_valor + (valor_producto * cantidad)
+            contador_valor = valor_producto * cantidad + contador_valor
             contador_cantidad = contador_cantidad + cantidad
         elif productos == 5:
             flag = False
@@ -104,6 +104,10 @@ while flag:
         continuar = int(input("desea seguir comprando? 1.Si   2.No\n"))
         if continuar == 2:
             flag = False
+        elif continuar == 1:
+            flag = True
+        else:
+            print("Debes colocar 1 o 2")
     except:
         print("Valor debe ser entre 1 y 5")
 
